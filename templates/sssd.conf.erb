@@ -1,0 +1,41 @@
+# Managed by puppet - do not modify
+[sssd]
+config_file_version = 2
+debug_level = 4
+reconnection_retries = 3
+sbus_timeout = 30
+services = nss, pam
+domains = LDAP
+
+[nss]
+debug_level = 4
+reconnection_retries = 3
+filter_groups = <%= scope.lookupvar('filter_groups') %>
+filter_users = <%= scope.lookupvar('filter_users') %>
+
+[pam]
+debug_level = 4
+reconnection_retries = 3
+offline_credentials_expiration = 0
+
+[domain/LDAP]
+debug_level = 4
+id_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+access_provider = ldap
+ldap_schema = rfc2307
+cache_credentials = true
+enumerate = True
+entry_cache_timeout = 6000
+ldap_id_use_start_tls = true
+ldap_search_base = <%= scope.lookupvar('ldap_base') %>
+ldap_uri = <%= scope.lookupvar('ldap_uri') %>
+ldap_access_filter = <%= scope.lookupvar('ldap_access_filter') %>
+ldap_group_member = uniquemember
+ldap_group_object_class = posixGroup
+ldap_group_name = cn
+ldap_network_timeout = 3
+ldap_tls_reqcert = <%= scope.lookupvar('ldap_tls_reqcert') %>
+ldap_tls_cacert = <%= scope.lookupvar('ldap_tls_cacert') %>
+ldap_chpass_update_last_change = true
