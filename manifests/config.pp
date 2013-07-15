@@ -13,13 +13,13 @@
 # Copyright 2013 EvenUp.
 #
 class sssd::config (
-  $filter_groups,
-  $filter_users,
-  $ldap_base,
-  $ldap_uri,
-  $ldap_access_filter,
-  $ldap_tls_reqcert,
-  $ldap_tls_cacert,
+  $filter_groups      = 'root,wheel',
+  $filter_users       = 'root',
+  $ldap_base          = 'dc=example,dc=org',
+  $ldap_uri           = 'ldap://ldap.example.org',
+  $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
+  $ldap_tls_reqcert   = 'demand',
+  $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
 ){
 
   file { '/etc/sssd/sssd.conf':
