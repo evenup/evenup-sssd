@@ -1,5 +1,6 @@
 v0.0.2:
   Lint fixes - defaults for config
+  Add expired account checking
 v0.0.1:
   Initial sssd release
 

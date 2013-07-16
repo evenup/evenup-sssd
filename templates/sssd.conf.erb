@@ -24,6 +24,7 @@ id_provider = ldap
 auth_provider = ldap
 chpass_provider = ldap
 access_provider = ldap
+cache_credentials = true
 ldap_schema = rfc2307
 cache_credentials = true
 enumerate = True
@@ -39,3 +40,6 @@ ldap_network_timeout = 3
 ldap_tls_reqcert = <%= scope.lookupvar('ldap_tls_reqcert') %>
 ldap_tls_cacert = <%= scope.lookupvar('ldap_tls_cacert') %>
 ldap_chpass_update_last_change = true
+ldap_pwd_policy = shadow
+ldap_account_expire_policy = shadow
+ldap_access_order = expire
