@@ -26,6 +26,11 @@
 #   String.  Filter used to search for users
 #   Default: (&(objectclass=shadowaccount)(objectclass=posixaccount))
 #
+# [*logsagent*]
+#   String.  Agent for remote log transport
+#   Default: ''
+#   Valid options: beaver
+#
 # === Examples
 #
 # * Installation:
@@ -52,6 +57,7 @@ class sssd (
   $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
+  $logsagent          = '',
 ){
 
   class { 'sssd::install': }
@@ -64,6 +70,7 @@ class sssd (
     ldap_access_filter  => $ldap_access_filter,
     ldap_tls_reqcert    => $ldap_tls_reqcert,
     ldap_tls_cacert     => $ldap_tls_cacert,
+    logsagent           => $logsagent,
   }
 
   class { 'sssd::service': }
