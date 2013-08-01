@@ -59,22 +59,22 @@ class sssd::config (
   case $logsagent {
     'beaver': {
       beaver::stanza { '/var/log/sssd/sssd_LDAP.log':
-        type    => 'syslog',
+        type    => 'sssd',
         tags    => ['sssd', 'ldap', $::disposition],
       }
 
       beaver::stanza { '/var/log/sssd/sssd.log':
-        type    => 'syslog',
+        type    => 'sssd',
         tags    => ['sssd', $::disposition],
       }
 
       beaver::stanza { '/var/log/sssd/sssd_nss.log':
-        type    => 'syslog',
+        type    => 'sssd',
         tags    => ['sssd', 'nss', $::disposition],
       }
 
       beaver::stanza { '/var/log/sssd/sssd_pam.log':
-        type    => 'syslog',
+        type    => 'sssd',
         tags    => ['sssd', 'pam', $::disposition],
       }
     }
