@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'sssd::config', :type => :class do
+  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat' } }
   let(:params) { {
     :filter_groups      => 'root',
     :filter_users       => 'root,wheel',
@@ -17,6 +18,18 @@ describe 'sssd::config', :type => :class do
   it { should contain_file('/etc/pam.d/system-auth') }
   it { should contain_file('/etc/pam.d/password-auth') }
   it { should contain_file('/etc/nsswitch.conf') }
+  it { should_not contain_beaver__stanza('/var/log/sssd/sssd_LDAP.log') }
+  it { should_not contain_beaver__stanza('/var/log/sssd/sssd.log') }
+  it { should_not contain_beaver__stanza('/var/log/sssd/sssd_pam.log') }
+  it { should_not contain_beaver__stanza('/var/log/sssd/sssd_nss.log') }
 
+  context 'with beaver' do
+    let(:params) { { :logsagent => 'beaver' } }
+
+    it { should contain_beaver__stanza('/var/log/sssd/sssd_LDAP.log') }
+    it { should contain_beaver__stanza('/var/log/sssd/sssd.log') }
+    it { should contain_beaver__stanza('/var/log/sssd/sssd_pam.log') }
+    it { should contain_beaver__stanza('/var/log/sssd/sssd_nss.log') }
+  end
 end
 

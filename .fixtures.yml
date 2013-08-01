@@ -1,5 +1,7 @@
 fixtures:
   repositories:
+    beaver: https://github.com/evenup/evenup-beaver.git
+    concat: https://github.com/ripienaar/puppet-concat.git
     stdlib: https://github.com/puppetlabs/puppetlabs-stdlib.git
   symlinks:
     sssd: "#{source_dir}"

@@ -20,6 +20,7 @@ class sssd::config (
   $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
+  $logsagent          = '',
 ){
 
   file { '/etc/sssd/sssd.conf':
@@ -54,5 +55,31 @@ class sssd::config (
     mode    => '0444',
     source  => 'puppet:///modules/sssd/nsswitch.conf',
   }
+
+  case $logsagent {
+    'beaver': {
+      beaver::stanza { '/var/log/sssd/sssd_LDAP.log':
+        type    => 'syslog',
+        tags    => ['sssd', 'ldap', $::disposition],
+      }
+
+      beaver::stanza { '/var/log/sssd/sssd.log':
+        type    => 'syslog',
+        tags    => ['sssd', $::disposition],
+      }
+
+      beaver::stanza { '/var/log/sssd/sssd_nss.log':
+        type    => 'syslog',
+        tags    => ['sssd', 'nss', $::disposition],
+      }
+
+      beaver::stanza { '/var/log/sssd/sssd_pam.log':
+        type    => 'syslog',
+        tags    => ['sssd', 'pam', $::disposition],
+      }
+    }
+    default: {}
+  }
+
 
 }

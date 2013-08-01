@@ -1,3 +1,5 @@
+v0.1.0:
+  Add remote log agent (beaver)
 v0.0.2:
   Lint fixes - defaults for config
   Add expired account checking
