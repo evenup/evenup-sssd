@@ -1,25 +1,25 @@
 # Managed by puppet - do not modify
 [sssd]
 config_file_version = 2
-debug_level = 4
+debug_level = 0x02F0
 reconnection_retries = 3
 sbus_timeout = 30
 services = nss, pam
 domains = LDAP
 
 [nss]
-debug_level = 4
+debug_level = 0x02F0
 reconnection_retries = 3
 filter_groups = <%= scope.lookupvar('filter_groups') %>
 filter_users = <%= scope.lookupvar('filter_users') %>
 
 [pam]
-debug_level = 4
+debug_level = 0x02F0
 reconnection_retries = 3
 offline_credentials_expiration = 0
 
 [domain/LDAP]
-debug_level = 4
+debug_level = 0x02F0
 id_provider = ldap
 auth_provider = ldap
 chpass_provider = ldap
