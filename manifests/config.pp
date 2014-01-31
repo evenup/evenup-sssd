@@ -18,6 +18,7 @@ class sssd::config (
   $ldap_base          = 'dc=example,dc=org',
   $ldap_uri           = 'ldap://ldap.example.org',
   $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
+  $ldap_group_member  = 'uniquemember',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
   $logsagent          = '',
