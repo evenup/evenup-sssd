@@ -1,5 +1,5 @@
 name 'evenup-sssd'
-version '0.2.0'
+version '0.3.0'
 author 'Justin Lambert <jlambert@letsevenup.com>'
 license 'Apache'
 summary 'Manages sssd.'
