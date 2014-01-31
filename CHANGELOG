@@ -1,3 +1,4 @@
+  Allow configuring ldap_group_member
 20130902 v0.2.0
   Update log level type to current version
 v0.1.0:

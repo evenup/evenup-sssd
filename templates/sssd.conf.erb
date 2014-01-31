@@ -33,7 +33,7 @@ ldap_id_use_start_tls = true
 ldap_search_base = <%= scope.lookupvar('ldap_base') %>
 ldap_uri = <%= scope.lookupvar('ldap_uri') %>
 ldap_access_filter = <%= scope.lookupvar('ldap_access_filter') %>
-ldap_group_member = uniquemember
+ldap_group_member =  <%= scope.lookupvar('ldap_group_member') %>
 ldap_group_object_class = posixGroup
 ldap_group_name = cn
 ldap_network_timeout = 3
