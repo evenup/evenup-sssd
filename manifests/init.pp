@@ -63,17 +63,7 @@ class sssd (
 
   class { 'sssd::install': }
 
-  class { 'sssd::config':
-    filter_groups       => $filter_groups,
-    filter_users        => $filter_users,
-    ldap_base           => $ldap_base,
-    ldap_uri            => $ldap_uri,
-    ldap_access_filter  => $ldap_access_filter,
-    ldap_group_member   => $ldap_group_member,
-    ldap_tls_reqcert    => $ldap_tls_reqcert,
-    ldap_tls_cacert     => $ldap_tls_cacert,
-    logsagent           => $logsagent,
-  }
+  class { 'sssd::config': }
 
   class { 'sssd::service': }
 
