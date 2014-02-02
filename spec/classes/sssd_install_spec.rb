@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'sssd::install', :type => :class do
+describe 'sssd', :type => :class do
 
   it { should create_class('sssd::install') }
 

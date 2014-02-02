@@ -10,8 +10,8 @@ domains = LDAP
 [nss]
 debug_level = 0x02F0
 reconnection_retries = 3
-filter_groups = <%= scope.lookupvar('filter_groups') %>
-filter_users = <%= scope.lookupvar('filter_users') %>
+filter_groups = <%= scope.lookupvar('sssd::filter_groups') %>
+filter_users = <%= scope.lookupvar('sssd::filter_users') %>
 
 [pam]
 debug_level = 0x02F0
@@ -30,15 +30,15 @@ cache_credentials = true
 enumerate = True
 entry_cache_timeout = 6000
 ldap_id_use_start_tls = true
-ldap_search_base = <%= scope.lookupvar('ldap_base') %>
-ldap_uri = <%= scope.lookupvar('ldap_uri') %>
-ldap_access_filter = <%= scope.lookupvar('ldap_access_filter') %>
-ldap_group_member =  <%= scope.lookupvar('ldap_group_member') %>
+ldap_search_base = <%= scope.lookupvar('sssd::ldap_base') %>
+ldap_uri = <%= scope.lookupvar('sssd::ldap_uri') %>
+ldap_access_filter = <%= scope.lookupvar('sssd::ldap_access_filter') %>
+ldap_group_member = <%= scope.lookupvar('sssd::ldap_group_member') %>
 ldap_group_object_class = posixGroup
 ldap_group_name = cn
 ldap_network_timeout = 3
-ldap_tls_reqcert = <%= scope.lookupvar('ldap_tls_reqcert') %>
-ldap_tls_cacert = <%= scope.lookupvar('ldap_tls_cacert') %>
+ldap_tls_reqcert = <%= scope.lookupvar('sssd::ldap_tls_reqcert') %>
+ldap_tls_cacert = <%= scope.lookupvar('sssd::ldap_tls_cacert') %>
 ldap_chpass_update_last_change = true
 ldap_pwd_policy = shadow
 ldap_account_expire_policy = shadow
