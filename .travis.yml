@@ -1,32 +1,62 @@
+---
 language: ruby
-bundler_args: --without development
-script: "bundle exec rake spec SPEC_OPTS='--format documentation'"
-rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-script:
-  - "rake lint"
-  - "rake spec SPEC_OPTS='--format documentation'"
-  - "rake spec"
-env:
-  - PUPPET_VERSION="~> 2.7.0"
-  - PUPPET_VERSION="~> 3.1.0"
-  - PUPPET_VERSION="~> 3.2.0"
-  - PUPPET_VERSION="~> 3.3.0"
-  - PUPPET_VERSION="~> 3.4.0"
+bundler_args: --without system_tests
+script: "bundle exec rake validate && bundle exec rake test SPEC_OPTS='--format documentation'"
 matrix:
-  exclude:
-    - rvm: 1.9.3
-      env: PUPPET_VERSION="~> 2.7.0"
-    - rvm: 2.0.0
-      env: PUPPET_VERSION="~> 2.7.0"
-    - rvm: 2.0.0
-      env: PUPPET_VERSION="~> 3.1.0"
+  fast_finish: true
+  include:
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 2.7.0"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.1.0"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.2.0"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.4.0"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES="yes"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES="yes"
+  - rvm: 1.8.7
+    env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES="yes"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.1.0"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.2.0"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.4.0"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES="yes"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES="yes"
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES="yes"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.2.0"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.4.0"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES="yes"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES="yes"
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES="yes"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES="yes"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES="yes"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES="yes"
 notifications:
   email: false
   hipchat:
     rooms:
-      - secure: "KfJZqW7ns8mifKFIf4cB2bkB0Trn/ahRSpJkMDuoMnqp5C076+8ZJWpt378F\nx1hrgUS6g8Jebnw7BNUZ3jPcFGBoVTPsmR5rXKDPP8nHI6mBzA8XlcGcev9W\n53gHCXx/ygIhD8w0X766rzjeurjhUNHeLeHYhmHjf7q9mLT7qtk="
+      - secure: 
   on_success: always
   on_failure: always

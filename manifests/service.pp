@@ -19,7 +19,7 @@ class sssd::service (){
   }
 
   service { 'sssd':
-    ensure  => 'running',
-    enable  => true,
+    ensure => 'running',
+    enable => true,
   }
 }

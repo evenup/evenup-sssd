@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'sssd', :type => :class do
-  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat' } }
+  let(:facts) { { :concat_basedir => '/var/lib/puppet/concat', :disposition => 'prod' } }
   let(:params) { {
     :filter_groups      => 'root',
     :filter_users       => 'root,wheel',
