@@ -7,11 +7,6 @@
 #
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 #
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 class sssd::install (
 ) {
 
@@ -20,11 +15,13 @@ class sssd::install (
   }
 
   package { 'sssd':
-    ensure  => 'latest',
+    ensure => 'latest',
+    notify => Class['sssd::service'],
   }
 
   package { 'sssd-client':
-    ensure  => 'latest',
+    ensure => 'latest',
+    notify => Class['sssd::service'],
   }
 
 }

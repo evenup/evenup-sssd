@@ -7,11 +7,6 @@
 #
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 #
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 class sssd::config {
 
   if $caller_module_name != $module_name {
@@ -32,6 +27,7 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
+    notify => Class['sssd::service'],
     source => 'puppet:///modules/sssd/password-auth',
   }
 
@@ -40,6 +36,7 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
+    notify => Class['sssd::service'],
     source => 'puppet:///modules/sssd/system-auth',
   }
 
@@ -48,6 +45,7 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
+    notify => Class['sssd::service'],
     source => 'puppet:///modules/sssd/nsswitch.conf',
   }
 
