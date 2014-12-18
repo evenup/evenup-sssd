@@ -7,11 +7,6 @@
 #
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 #
-#
-# === Copyright
-#
-# Copyright 2013 EvenUp.
-#
 class sssd::service (){
 
   if $caller_module_name != $module_name {
