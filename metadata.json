@@ -1,8 +1,8 @@
 {
   "name": "evenup-sssd",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Justin Lambert <jlambert@letsevenup.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "summary": "Manages SSSD",
   "source": "https://github.com/evenup/evenup-sssd",
   "project_page": "https://github.com/evenup/evenup-sssd",
