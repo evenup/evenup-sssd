@@ -1,3 +1,6 @@
+20150105 v0.3.1
+  Add acceptance tests
+  Update helper files
 20140131 v0.3.0
   Allow configuring ldap_group_member
 20130902 v0.2.0
