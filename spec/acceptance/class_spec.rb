@@ -1,7 +1,7 @@
 require 'spec_helper_acceptance'
 
 describe 'sssd class' do
-  context 'set readahead' do
+  context 'install' do
 
     it 'should work idempotently with no errors' do
       pp = <<-EOS
