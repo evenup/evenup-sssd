@@ -2,7 +2,7 @@
   .travis.yml:
     hc_secure: "VmPzLLK+QJfdACAB9pBeHUL1EEFHHEA0vSEeEcO0AcInpcuWb5UhVV7npKNoLig9tfNTQVO2b93byRdQj2QM+waalOraFLvlQ+Lqv5oiopFhlXR010QQn3Wc574ojtPr/oyCodOMrE2PHT0QMI1zAs2vABb9WoW6og3CUZlERUU="
   spec/acceptance/nodesets/ubuntu-server-1204-x64.yml:
-    delete: true
+    unmanaged: true
   spec/acceptance/nodesets/ubuntu-server-1404-x64.yml:
-    delete: true
+    unmanaged: true
 
