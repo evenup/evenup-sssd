@@ -53,13 +53,13 @@ class sssd (
   $ldap_group_member  = 'uniquemember',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
-  $logsagent          = '',
+  $logsagent          = undef,
 ){
 
-  anchor { 'sssd::begin': } ->
-  class { 'sssd::install': } ->
-  class { 'sssd::config': } ->
-  class { 'sssd::service': } ->
-  anchor { 'sssd::end': }
+  anchor { '::sssd::begin': } ->
+  class { '::sssd::install': } ->
+  class { '::sssd::config': } ->
+  class { '::sssd::service': } ->
+  anchor { '::sssd::end': }
 
 }
