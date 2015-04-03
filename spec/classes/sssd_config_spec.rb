@@ -63,6 +63,11 @@ describe 'sssd', :type => :class do
     it { should contain_file('/etc/sssd/sssd.conf').with_content(/ldap_tls_cacert = \/tmp\/cert/)}
   end
 
+  context 'setting manage_nsswitch' do
+    let(:params) { { :manage_nsswitch => false } }
+    it { should_not contain_file('/etc/nsswitch.conf') }
+  end
+
   context 'with beaver' do
     let(:params) { { :logsagent => 'beaver' } }
 
