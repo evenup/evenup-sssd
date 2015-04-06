@@ -1,3 +1,6 @@
+20150406 v0.4.0
+  Add more customization ability to nsswitch <salekseev>
+  Add ability to not manage nsswitch <salekseev>
 20150105 v0.3.1
   Add acceptance tests
   Update helper files
