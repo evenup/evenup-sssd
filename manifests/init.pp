@@ -6,6 +6,10 @@
 #
 # === Parameters
 #
+# [*services*]
+#   String. Comma separated list of services that are started when sssd itself starts.
+#   Default: nss,pam
+#
 # [*filter_groups*]
 #   String.  Groups to filter out of the sssd results
 #   Default: root,wheel
@@ -26,6 +30,14 @@
 #   String.  Filter used to search for users
 #   Default: (&(objectclass=shadowaccount)(objectclass=posixaccount))
 #
+# [*ldap_schema*]
+#   String. Specifies the Schema Type in use on the target LDAP server.
+#   Default: rfc2307
+#
+# [*manage_nsswitch*]
+#   Boolean. Weather to manage /etc/nsswitch.conf.
+#   Default: true
+#
 # [*logsagent*]
 #   String.  Agent for remote log transport
 #   Default: ''
@@ -45,14 +57,17 @@
 # * Justin Lambert <mailto:jlambert@letsevenup.com>
 #
 class sssd (
+  $services           = 'nss,pam',
   $filter_groups      = 'root,wheel',
   $filter_users       = 'root',
   $ldap_base          = 'dc=example,dc=org',
   $ldap_uri           = 'ldap://ldap.example.org',
   $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
   $ldap_group_member  = 'uniquemember',
+  $ldap_schema        = 'rfc2307',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
+  $manage_nsswitch    = true,
   $logsagent          = undef,
 ){
 

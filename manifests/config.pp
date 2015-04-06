@@ -40,13 +40,15 @@ class sssd::config {
     source => 'puppet:///modules/sssd/system-auth',
   }
 
-  file { '/etc/nsswitch.conf':
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0444',
-    notify => Class['sssd::service'],
-    source => 'puppet:///modules/sssd/nsswitch.conf',
+  if $sssd::manage_nsswitch {
+    file { '/etc/nsswitch.conf':
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0444',
+      notify => Class['sssd::service'],
+      source => 'puppet:///modules/sssd/nsswitch.conf',
+    }
   }
 
   case $sssd::logsagent {
