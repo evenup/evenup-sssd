@@ -16,12 +16,16 @@ class sssd::install (
 
   package { 'sssd':
     ensure => 'latest',
-    notify => Class['sssd::service'],
   }
 
   package { 'sssd-client':
     ensure => 'latest',
-    notify => Class['sssd::service'],
+  }
+
+  if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
+    package { 'oddjob-mkhomedir':
+      ensure => 'installed',
+    }
   }
 
 }

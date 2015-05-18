@@ -17,4 +17,11 @@ class sssd::service (){
     ensure => 'running',
     enable => true,
   }
+
+  if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
+    service { 'oddjobd':
+      ensure => 'running',
+      enable => true,
+    }
+  }
 }

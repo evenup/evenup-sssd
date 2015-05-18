@@ -13,12 +13,17 @@ class sssd::config {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
+  if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
+    $_sys_source = 'puppet:///modules/sssd/system-auth.oddjob'
+  } else {
+    $_sys_source = 'puppet:///modules/sssd/system-auth'
+  }
+
   file { '/etc/sssd/sssd.conf':
     ensure  => 'file',
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
-    notify  => Class['sssd::service'],
     content => template('sssd/sssd.conf.erb'),
   }
 
@@ -27,7 +32,6 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
-    notify => Class['sssd::service'],
     source => 'puppet:///modules/sssd/password-auth',
   }
 
@@ -36,8 +40,7 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
-    notify => Class['sssd::service'],
-    source => 'puppet:///modules/sssd/system-auth',
+    source => $_sys_source,
   }
 
   if $sssd::manage_nsswitch {
@@ -46,7 +49,6 @@ class sssd::config {
       owner  => 'root',
       group  => 'root',
       mode   => '0444',
-      notify => Class['sssd::service'],
       source => 'puppet:///modules/sssd/nsswitch.conf',
     }
   }
