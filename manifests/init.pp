@@ -73,8 +73,10 @@ class sssd (
 
   anchor { '::sssd::begin': } ->
   class { '::sssd::install': } ->
-  class { '::sssd::config': } ->
+  class { '::sssd::config': } ~>
   class { '::sssd::service': } ->
   anchor { '::sssd::end': }
+
+  Class['sssd::install'] ~> Class['sssd::service']
 
 }

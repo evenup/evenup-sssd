@@ -15,9 +15,8 @@ describe 'sssd', :type => :class do
   it { should create_class('sssd::config') }
 
   it { should contain_file('/etc/sssd/sssd.conf').with_mode('0600') }
-  it { should contain_file('/etc/pam.d/system-auth') }
-  it { should contain_file('/etc/pam.d/password-auth') }
   it { should contain_file('/etc/nsswitch.conf') }
+  it { should contain_file('/etc/pam.d/password-auth').with(:source => 'puppet:///modules/sssd/password-auth') }
   it { should_not contain_beaver__stanza('/var/log/sssd/sssd_LDAP.log') }
   it { should_not contain_beaver__stanza('/var/log/sssd/sssd.log') }
   it { should_not contain_beaver__stanza('/var/log/sssd/sssd_pam.log') }
@@ -66,6 +65,16 @@ describe 'sssd', :type => :class do
   context 'setting manage_nsswitch' do
     let(:params) { { :manage_nsswitch => false } }
     it { should_not contain_file('/etc/nsswitch.conf') }
+  end
+
+  context 'centos 6' do
+    let(:facts) { { :operatingsystemrelease => '6.6' } }
+    it { should contain_file('/etc/pam.d/system-auth').with(:source => 'puppet:///modules/sssd/system-auth') }
+  end
+
+  context 'centos 7' do
+    let(:facts) { { :operatingsystemrelease => '7.0.1406' } }
+    it { should contain_file('/etc/pam.d/system-auth').with(:source => 'puppet:///modules/sssd/system-auth.oddjob') }
   end
 
   context 'with beaver' do
