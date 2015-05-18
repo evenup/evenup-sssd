@@ -22,6 +22,16 @@ describe 'sssd', :type => :class do
   it { should_not contain_beaver__stanza('/var/log/sssd/sssd_pam.log') }
   it { should_not contain_beaver__stanza('/var/log/sssd/sssd_nss.log') }
 
+  context 'setting enumerate off' do
+    let(:params) { { :ldap_enumerate => false } }
+    it { should contain_file('/etc/sssd/sssd.conf').with_content(/enumerate = false/)}
+  end
+
+  context 'setting enumerate on' do
+    let(:params) { { :ldap_enumerate => true } }
+    it { should contain_file('/etc/sssd/sssd.conf').with_content(/enumerate = true/)}
+  end
+
   context 'setting filter_groups' do
     let(:params) { { :filter_groups => 'foo,bar' } }
     it { should contain_file('/etc/sssd/sssd.conf').with_content(/filter_groups = foo,bar/)}

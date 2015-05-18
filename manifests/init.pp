@@ -67,6 +67,7 @@ class sssd (
   $ldap_schema        = 'rfc2307',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
+  $ldap_enumerate     = true,
   $manage_nsswitch    = true,
   $logsagent          = undef,
 ){

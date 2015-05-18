@@ -27,7 +27,7 @@ access_provider = ldap
 cache_credentials = true
 ldap_schema = <%= scope.lookupvar('sssd::ldap_schema') %>
 cache_credentials = true
-enumerate = True
+enumerate = <%= scope.lookupvar('sssd::ldap_enumerate') ? 'true':'false' %>
 entry_cache_timeout = 6000
 ldap_id_use_start_tls = true
 ldap_search_base = <%= scope.lookupvar('sssd::ldap_base') %>
