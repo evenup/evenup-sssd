@@ -40,6 +40,6 @@ ldap_network_timeout = 3
 ldap_tls_reqcert = <%= scope.lookupvar('sssd::ldap_tls_reqcert') %>
 ldap_tls_cacert = <%= scope.lookupvar('sssd::ldap_tls_cacert') %>
 ldap_chpass_update_last_change = true
-ldap_pwd_policy = shadow
+ldap_pwd_policy = <%= scope.lookupvar('sssd::ldap_pwd_policy') %>
 ldap_account_expire_policy = shadow
 ldap_access_order = expire

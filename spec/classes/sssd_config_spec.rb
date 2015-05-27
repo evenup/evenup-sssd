@@ -32,6 +32,11 @@ describe 'sssd', :type => :class do
     it { should contain_file('/etc/sssd/sssd.conf').with_content(/enumerate = true/)}
   end
 
+  context 'setting ldap_pwd_policy' do
+    let(:params) { { :ldap_pwd_policy => 'none' } }
+    it { should contain_file('/etc/sssd/sssd.conf').with_content(/ldap_pwd_policy = none/)}
+  end
+
   context 'setting filter_groups' do
     let(:params) { { :filter_groups => 'foo,bar' } }
     it { should contain_file('/etc/sssd/sssd.conf').with_content(/filter_groups = foo,bar/)}
