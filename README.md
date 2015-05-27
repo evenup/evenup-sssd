@@ -11,8 +11,9 @@ Include the SSSD module and it will set up PAM and the nsswitch for local and LD
 
 <pre>
   class { 'sssd':
-    ldap_base => 'dc=mycompany,dc=com',
-    ldap_uri  => 'ldap://ldap1.mycompany.com, ldap://ldap2.mycompany.com',
+    ldap_base       => 'dc=mycompany,dc=com',
+    ldap_uri        => 'ldap://ldap1.mycompany.com, ldap://ldap2.mycompany.com',
+    ldap_pwd_policy => 'none',
   }
 </pre>
 
