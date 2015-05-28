@@ -30,6 +30,12 @@
 #   String.  Filter used to search for users
 #   Default: (&(objectclass=shadowaccount)(objectclass=posixaccount))
 #
+# [*ldap_pwd_policy*]
+#   String. Select the policy to evaluate the password expiration on
+#   the client side.
+#   Default: shadow (default for sssd is 'none')
+#   Valid options: none shadow mit_kerberos
+#
 # [*ldap_schema*]
 #   String. Specifies the Schema Type in use on the target LDAP server.
 #   Default: rfc2307
@@ -64,6 +70,7 @@ class sssd (
   $ldap_uri           = 'ldap://ldap.example.org',
   $ldap_access_filter = '(&(objectclass=shadowaccount)(objectclass=posixaccount))',
   $ldap_group_member  = 'uniquemember',
+  $ldap_pwd_policy    = 'shadow',
   $ldap_schema        = 'rfc2307',
   $ldap_tls_reqcert   = 'demand',
   $ldap_tls_cacert    = '/etc/pki/tls/certs/ca-bundle.crt',
