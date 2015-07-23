@@ -77,6 +77,7 @@ class sssd (
   $ldap_enumerate     = true,
   $manage_nsswitch    = true,
   $logsagent          = undef,
+  $debug_level        = '0x02F0',
 ){
 
   anchor { '::sssd::begin': } ->
