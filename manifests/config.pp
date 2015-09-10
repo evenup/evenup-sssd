@@ -3,10 +3,6 @@
 # This class configures sssd.  It is not intended to be called directly.
 #
 #
-# === Authors
-#
-# * Justin Lambert <mailto:jlambert@letsevenup.com>
-#
 class sssd::config {
 
   if $caller_module_name != $module_name {
@@ -15,8 +11,10 @@ class sssd::config {
 
   if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
     $_sys_source = 'puppet:///modules/sssd/system-auth.oddjob'
+    $_pwauth_source = 'puppet:///modules/sssd/password-auth'
   } else {
     $_sys_source = 'puppet:///modules/sssd/system-auth'
+    $_pwauth_source = 'puppet:///modules/sssd/password-auth.6'
   }
 
   file { '/etc/sssd/sssd.conf':
@@ -32,7 +30,7 @@ class sssd::config {
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
-    source => 'puppet:///modules/sssd/password-auth',
+    source => $_pwauth_source,
   }
 
   file { '/etc/pam.d/system-auth':

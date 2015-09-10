@@ -3,10 +3,6 @@
 # This class installs sssd.  It is not intended to be called directly.
 #
 #
-# === Authors
-#
-# * Justin Lambert <mailto:jlambert@letsevenup.com>
-#
 class sssd::install (
 ) {
 

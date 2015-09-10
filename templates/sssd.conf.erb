@@ -5,7 +5,10 @@ debug_level = <%= scope.lookupvar('sssd::debug_level') %>
 reconnection_retries = 3
 sbus_timeout = 30
 services = <%= scope.lookupvar('sssd::services') %>
-domains = LDAP
+domains = <%= scope.lookupvar('sssd::domain') %>
+<% if scope.lookupvar('sssd::homedir') -%>
+homedir_substring = <%= scope.lookupvar('sssd::homedir') %>
+<% end -%>
 
 [nss]
 debug_level = <%= scope.lookupvar('sssd::debug_level') %>
@@ -18,17 +21,16 @@ debug_level = <%= scope.lookupvar('sssd::debug_level') %>
 reconnection_retries = 3
 offline_credentials_expiration = 0
 
-[domain/LDAP]
+[domain/<%= scope.lookupvar('sssd::domain') %>]
 debug_level = <%= scope.lookupvar('sssd::debug_level') %>
-id_provider = ldap
-auth_provider = ldap
-chpass_provider = ldap
-access_provider = ldap
+id_provider = <%= scope.lookupvar('sssd::provider') %>
+auth_provider = <%= scope.lookupvar('sssd::provider') %>
+chpass_provider = <%= scope.lookupvar('sssd::provider') %>
+access_provider = <%= scope.lookupvar('sssd::provider') %>
 cache_credentials = true
+<% if scope.lookupvar('sssd::provider') == 'ldap' -%>
 ldap_schema = <%= scope.lookupvar('sssd::ldap_schema') %>
-cache_credentials = true
 enumerate = <%= scope.lookupvar('sssd::ldap_enumerate') ? 'true':'false' %>
-entry_cache_timeout = 6000
 ldap_id_use_start_tls = true
 ldap_search_base = <%= scope.lookupvar('sssd::ldap_base') %>
 ldap_uri = <%= scope.lookupvar('sssd::ldap_uri') %>
@@ -43,3 +45,22 @@ ldap_chpass_update_last_change = true
 ldap_pwd_policy = <%= scope.lookupvar('sssd::ldap_pwd_policy') %>
 ldap_account_expire_policy = shadow
 ldap_access_order = expire
+<% elsif scope.lookupvar('sssd::provider') == 'ipa' %>
+krb5_store_password_if_offline = true
+ipa_domain = <%= scope.lookupvar('sssd::domain') %>
+ipa_hostname = <%= scope.lookupvar('sssd::ipa_hostname') %>
+dyndns_update = <%= scope.lookupvar('sssd::ipa_dyndns') ? 'true':'false' %>
+ipa_server = <%= scope.lookupvar('sssd::ipa_server') %>
+ldap_tls_cacert = /etc/ipa/ca.crt
+ipa_server_mode = <%= scope.lookupvar('sssd::ipa_server_mode') ? 'true':'false' %>
+<% end -%>
+
+[sudo]
+
+[autofs]
+
+[ssh]
+
+[pac]
+
+[ifp]
